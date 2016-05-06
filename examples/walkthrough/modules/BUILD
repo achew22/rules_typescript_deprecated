@@ -1,9 +1,16 @@
-load("//typescript:def.bzl", "typescript_binary")
+load("//typescript:def.bzl", "ts_binary", "ts_library")
 
-typescript_binary(
-    name = "modules",
-    deps = [
+ts_library(
+    name = "lib",
+    srcs = [
       "animal.ts",
       "main.ts",
+    ]
+)
+
+ts_binary(
+    name = "modules",
+    deps = [
+        ":lib",
     ]
 )
