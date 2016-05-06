@@ -1,0 +1,24 @@
+#! /usr/bin/env bash
+
+set -e
+
+# There is probably a better way to do this, but this turns out to be a fiarly
+# robust way to target the .nar execuatable.
+NAR="./bazel-out/local_darwin-fastbuild/bin/typescript/run.runfiles/external/typescript_*/file/typescript-*.nar"
+
+# There is a race condition when compiling multiple ts_binaries. mkdir is
+# atomic and has an error code when it can't make a file (making it a perfect
+# lock). Lock on the .nar folder until .tsc_unlock is available.
+if mkdir .nar 2> /dev/null; then
+  until [[ -f .tsc_unlock ]]; do
+    sleep .1s
+  done
+fi
+
+args=()
+for var in "$@"; do
+  args+=("$(pwd)/${var}")
+done
+
+$NAR exec "--out ${args[*]}"
+touch .tsc_unlock

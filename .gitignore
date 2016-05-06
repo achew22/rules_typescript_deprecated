@@ -2,4 +2,5 @@ bazel-bin
 bazel-genfiles
 bazel-out
 bazel-testlogs
+bazel-bazel-typescript
 bazel-typescript
