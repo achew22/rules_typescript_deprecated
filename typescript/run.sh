@@ -21,5 +21,5 @@ for var in "$@"; do
   args+=("$(pwd)/${var}")
 done
 
-$NAR exec "--out ${args[*]}"
+$NAR exec "--module amd ${FLAGS} --outFile ${args[*]}"
 touch .tsc_unlock

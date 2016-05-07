@@ -20,6 +20,9 @@ def ts_binary_impl(ctx):
       inputs=files,
       outputs=[output],
       executable=ctx.executable.tsc_,
+      env={
+          "FLAGS": ' '.join(ctx.attr.flags),
+      },
       arguments=["%s" % (output.path)] + \
           ["%s" % x.path for x in files])
 
@@ -40,6 +43,7 @@ ts_binary = rule(
             executable=True),
         "deps": attr.label_list(allow_files=True),
         "srcs": attr.label_list(allow_files=ts_filetype),
+        "flags": attr.string_list(),
     },
     outputs = {
         "out": "%{name}.js"
