@@ -54,13 +54,13 @@ def typescript_repositories():
     native.http_file(
         name=  "typescript_darwin_amd64",
         url = "https://files.achew22.com/typescript-1.9.0-darwin-x64.nar",
-        sha256 = "49ad400dce6b624c312cfe8c56a0feb39a8f523010ee4cdefe0649b11af17dc1",
+        sha256 = "6f14f4efe3e24d4fcee060455979f3a68e59e56463716d6ee9a2cfa54976f4bf",
         executable = True,
     )
 
     native.http_file(
         name=  "typescript_linux_amd64",
         url = "https://files.achew22.com/typescript-1.9.0-linux-x64.nar",
-        sha256 = "01f56c4bad5a982c2791a872f6b79145f273ee2ef5649ef70a728fe421e72325",
+        sha256 = "e62bb3280e6853cfb4f9cdee3f3580e1e6a8020f6fd95b06ff5408ecd2c92327",
         executable = True,
     )
