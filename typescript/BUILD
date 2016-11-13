@@ -1,16 +1,14 @@
 package(default_visibility=["//visibility:public"])
 
-sh_binary(
-    name = "run",
-    srcs = [
-        "run.sh",
-    ],
-    data = select({
-        ":darwin": ["@typescript_darwin_amd64//file"],
-        ":k8": ["@typescript_linux_amd64//file"],
-    }),
-)
+load("@org_pubref_rules_node//node:rules.bzl", "node_binary")
 
+node_binary(
+    name = "run",
+    main = "run.js",
+    modules = [
+        "@npm_typescript//:modules",
+    ],
+)
 
 config_setting(
     name = "darwin",

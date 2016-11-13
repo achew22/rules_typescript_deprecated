@@ -1,3 +1,5 @@
+load("@org_pubref_rules_node//node:rules.bzl", "npm_repository")
+
 ts_filetype = FileType([".ts"])
 
 def get_transitive_files(ctx):
@@ -38,6 +40,7 @@ ts_binary = rule(
     implementation = ts_binary_impl,
     attrs = {
         "tsc_": attr.label(
+            cfg = "host",
             default=Label("//typescript:run"),
             allow_files=True,
             executable=True),
@@ -51,16 +54,10 @@ ts_binary = rule(
 )
 
 def typescript_repositories():
-    native.http_file(
-        name=  "typescript_darwin_amd64",
-        url = "http://typescript.bazel.achew22.com/typescript-1.9.0-darwin-x64.nar",
-        sha256 = "6f14f4efe3e24d4fcee060455979f3a68e59e56463716d6ee9a2cfa54976f4bf",
-        executable = True,
-    )
-
-    native.http_file(
-        name=  "typescript_linux_amd64",
-        url = "http://typescript.bazel.achew22.com/typescript-1.9.0-linux-x64.nar",
-        sha256 = "e62bb3280e6853cfb4f9cdee3f3580e1e6a8020f6fd95b06ff5408ecd2c92327",
-        executable = True,
+    npm_repository(
+        name = "npm_typescript",
+        deps = {
+            "typescript": "2.0.9",
+        },
+        sha256 = "9075f59a2b279d68532a48484366c69f0cfa970be6e917b4f36641785a93c3bd"
     )
