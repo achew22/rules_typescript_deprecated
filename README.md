@@ -19,7 +19,7 @@ load("@org_pubref_rules_node//node:rules.bzl", "node_repositories")
 node_repositories()
 git_repository(
     name = "com_github_achew22_rules_typescript",
-    commit = "af5be8b0d271f1e29b417413e7a2a35ccf6edb5e",
+    commit = "16e11f74499234403ef20e75eca4d32b69221970",
     remote = "https://github.com/achew22/rules_typescript",
 )
 
