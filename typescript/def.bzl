@@ -20,7 +20,7 @@ def ts_binary_impl(ctx):
 
   ctx.action(
       inputs=files,
-      outputs=[output],
+      outputs=[output, ctx.outputs.sourcemap],
       executable=ctx.executable.tsc_,
       env={
           "FLAGS": ' '.join(ctx.attr.flags),
@@ -49,7 +49,8 @@ ts_binary = rule(
         "flags": attr.string_list(),
     },
     outputs = {
-        "out": "%{name}.js"
+        "out": "%{name}.js",
+        "sourcemap": "%{name}.js.map",
     }
 )
 
