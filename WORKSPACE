@@ -2,7 +2,7 @@ workspace(name = "com_github_achew22_bazel_typescript")
 
 git_repository(
     name = "org_pubref_rules_node",
-    commit = "99f4b5711612df28e4d874dda05c2c83ae0ff3b6",
+    commit = "c5ec209558b57657fc4c5e16b247e3b2af30f2c8",
     remote = "https://github.com/achew22/rules_node.git",
 )
 
