@@ -1,21 +1,12 @@
-package(default_visibility=["//visibility:public"])
+package(default_visibility = ["//visibility:public"])
 
-load("@org_pubref_rules_node//node:rules.bzl", "node_binary")
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
 
-node_binary(
+nodejs_binary(
     name = "run",
-    main = "run.js",
-    modules = [
-        "@npm_typescript//:modules",
+    data = [
+        "run.js",
+        "@//:node_modules",
     ],
-)
-
-config_setting(
-    name = "darwin",
-    values = {"host_cpu": "darwin"},
-)
-
-config_setting(
-    name = "k8",
-    values = {"host_cpu": "k8"},
+    entry_point = "com_github_achew22_bazel_typescript/typescript/run.js",
 )

@@ -4,3 +4,4 @@ bazel-out
 bazel-testlogs
 bazel-rules_typescript
 bazel-typescript
+node_modules
