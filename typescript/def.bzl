@@ -1,7 +1,7 @@
 ts_filetype = FileType([".ts"])
 
 def get_transitive_files(ctx):
-  s = set()
+  s = depset()
   for dep in ctx.attr.deps:
     s += dep.transitive_files
   s += ctx.files.srcs
@@ -9,7 +9,7 @@ def get_transitive_files(ctx):
 
 def ts_library_impl(ctx):
   return struct(
-      files=set(),
+      files=depset(),
       transitive_files=get_transitive_files(ctx))
 
 def ts_binary_impl(ctx):
